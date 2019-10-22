@@ -1,20 +1,65 @@
-// Question 1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+using namespace std;
+int maximum(int*, int);
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+	// Setting the pointer of the dynamic grades array
+	int* grades = NULL;
+
+	int gradeCount;
+	cout << "Please enter the total amount of grades to be entered: " << endl;
+	cin >> gradeCount;
+
+	// Defining the size of the grades array
+	grades = new int[gradeCount];
+
+	// Inputting the grades
+	for (int i = 0; i < gradeCount; i++) {
+		int gradeInput;
+		cout << "Enter grade #" << i << endl;
+		cin >> gradeInput;
+		grades[i] = gradeInput;
+	}
+
+
+
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int maximum(int* grades, int gradeCount) {
+	int maximum;
+	for (int i; i < gradeCount; i++) {
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	}
+}
+
+int minimum() {
+
+}
+
+int average() {
+
+}
+
+int median() {
+
+}
+
+int AGrades() {
+
+}
+
+int BGrades() {
+
+}
+
+int CGrades() {
+
+}
+
+int DGrades() {
+
+}
+
+int FGrades() {
+
+}
