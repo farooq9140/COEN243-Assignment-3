@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 int maximum(int*, int);
+int minimum(int*, int);
+
 
 int main() {
 	// Setting the pointer of the dynamic grades array
@@ -16,50 +18,31 @@ int main() {
 	// Inputting the grades
 	for (int i = 0; i < gradeCount; i++) {
 		int gradeInput;
-		cout << "Enter grade #" << i << endl;
+		cout << "Enter grade #" << i+1 << endl;
 		cin >> gradeInput;
 		grades[i] = gradeInput;
 	}
 
-
-
+	cout << "Maximum grade is: " << maximum(grades, gradeCount) << endl;
+	cout << "Minimum grade is: " << minimum(grades, gradeCount) << endl;
 }
 
 int maximum(int* grades, int gradeCount) {
-	int maximum;
-	for (int i; i < gradeCount; i++) {
-
+	int maximum = grades[0];
+	for (int i{ 1 }; i < gradeCount; i++) {
+		if (grades[i] > maximum) {
+			maximum = grades[i];
+		}
 	}
+	return maximum;
 }
 
-int minimum() {
-
-}
-
-int average() {
-
-}
-
-int median() {
-
-}
-
-int AGrades() {
-
-}
-
-int BGrades() {
-
-}
-
-int CGrades() {
-
-}
-
-int DGrades() {
-
-}
-
-int FGrades() {
-
+int minimum(int* grades, int gradeCount) {
+	int minimum = grades[0];
+	for (int i{ 1 }; i < gradeCount; i++) {
+		if (grades[i] < minimum) {
+			minimum = grades[i];
+		}
+	}
+	return minimum;
 }
