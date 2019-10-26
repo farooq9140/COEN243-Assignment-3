@@ -75,7 +75,7 @@ double median(int* grades, int gradeCount) {
 	sort();
 	ordered = new int[gradeCount];
 	if (gradeCount % 2 == 0) {
-		medianValue = static_cast<double>(grades[(gradeCount / 2)] + grades[(gradeCount / 2) + 1])/2;
+		medianValue = (static_cast<double>(grades[(gradeCount / 2)]) + grades[(gradeCount / 2) + 1])/2;
 	}
 	else {
 		medianValue = grades[(gradeCount / 2) + 1];
