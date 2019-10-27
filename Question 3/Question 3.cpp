@@ -3,8 +3,8 @@
 using namespace std;
 void controllerMenu();
 void display();
-void left();
-void right();
+void left(int);
+void right(int);
 int arrayMap[10];
 
 int main() {
@@ -15,15 +15,22 @@ int main() {
 		int command;
 		controllerMenu();
 		cin >> command;
+		int n = 1;
 		switch (command) {
 		case 1:
-			right();
+			cout << endl << "How many tiles to the right would you like to move the robot? " << endl;
+			cin >> n;
+			cout << endl << "Robot was moved to the right by " << n << " tiles." << endl << endl;
+			right(n);
 			break;
 		case 2:
-			left();			
+			cout << endl << "How many tiles to the left would you like to move the robot? " << endl;
+			cin >> n;
+			cout << endl << "Robot was moved to the left by " << n << " tiles." << endl << endl;
+			left(n);			
 			break;
 		case 3:
-			cout << "Displaying the array map" << endl;
+			cout << endl << "Displaying the array map" << endl;
 			display();
 			break;
 		case 4:
@@ -44,7 +51,7 @@ int main() {
 }
 
 void controllerMenu() {
-	cout << "Controller Menu: " << endl << "1. Right" << endl << "2. Left" << endl << "3. Display" << endl << "4. Reboot" << endl << "5. Show Array" << endl <<  "6. Exit" << endl;
+	cout << "[Controller Menu] " << endl << "1. Right" << endl << "2. Left" << endl << "3. Display" << endl << "4. Reboot" << endl << "5. Show Array" << endl <<  "6. Exit" << endl;
 }
 
 void display() {
@@ -66,35 +73,40 @@ void display() {
 	for (int i = 0; i < 21; i++) {
 		cout << "-";
 	}
-	cout << endl;
+	cout << endl << endl;
 }
 
-void right() {
-	for (int i = 0; i < 10; i++) {
-		if (arrayMap[i] == 1) {
-			if (i != 9) {
-				arrayMap[i] = 0;
-				arrayMap[i + 1] = 1;
-				return; // Stops the function from looping a move to the right
-			}
-			else {
-				cout << "Unable to move to the right, out of bounds. " << endl;
+void right(int n) {
+	for (int i = 0; i < n; i++) {
+		for (int i = 0; i < 10; i++) {
+			if (arrayMap[i] == 1) {
+				if (i != 9) {
+					arrayMap[i] = 0;
+					arrayMap[i + 1] = 1;
+					break; // Stops the function from looping a move to the right
+				}
+				else {
+					cout << "Unable to move to the right, out of bounds. " << endl << endl;
+				}
 			}
 		}
 	}
 }
 
-void left() {
-	for (int i = 0; i < 10; i++) {
-		if (arrayMap[i] == 1) {
-			if (i != 0) {
-				arrayMap[i] = 0;
-				arrayMap[i - 1] = 1;
-				return; // Stops the function from looping after an action was taken
-			}
-			else {
-				cout << "Unable to move to the left, out of bounds. " << endl;
+void left(int n) {
+	for (int i = 0; i < n; i++) {
+		for (int i = 0; i < 10; i++) {
+			if (arrayMap[i] == 1) {
+				if (i != 0) {
+					arrayMap[i] = 0;
+					arrayMap[i - 1] = 1;
+					break; // Stops the function from looping after an action was taken
+				}
+				else {
+					cout << "Unable to move to the left, out of bounds. " << endl << endl;
+				}
 			}
 		}
 	}
+
 }
