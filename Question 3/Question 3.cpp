@@ -5,6 +5,7 @@ void controllerMenu();
 void display();
 void left(int);
 void right(int);
+void reboot();
 int arrayMap[10];
 
 int main() {
@@ -36,6 +37,8 @@ int main() {
 			display();
 			break;
 		case 4:
+			cout << endl << "Resetting the array to the initial state" << endl;
+			reboot();
 			break;
 		case 5:
 			break;
@@ -114,4 +117,12 @@ void left(int n) {
 		}
 	}
 
+}
+
+void reboot() {
+	for (int i = 0; i < 10; i++) {
+		// Resets the array
+		arrayMap[i] = 0;
+	}
+	arrayMap[0] = 1;
 }
