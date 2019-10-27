@@ -6,6 +6,7 @@ void display();
 int left(int);
 int right(int);
 void reboot();
+void showArray();
 int arrayMap[10];
 
 int main() {
@@ -62,22 +63,26 @@ int main() {
 			reboot();
 			break;
 		case 5:
+			cout << endl << "Displaying the empty array map" << endl;
+			showArray();
 			break;
 		case 6:
-			cout << "Program is ending";
+			break;
+		case 7:
+			break;
+		case 8:
+			cout << "Program is ending.";
 			programRunning = false;
 			break;
 		default:
-			cout << "Command could not be recognized" << endl << endl;
+			cout << "Command could not be recognized, please try again. " << endl << endl;
 		}
 	}
-
-
 	return 0;
 }
 
 void controllerMenu() {
-	cout << "[Controller Menu] " << endl << "1. Right" << endl << "2. Left" << endl << "3. Display" << endl << "4. Reboot" << endl << "5. Show Array" << endl <<  "6. Exit" << endl;
+	cout << "[Controller Menu] " << endl << "1. Right" << endl << "2. Left" << endl << "3. Display" << endl << "4. Reboot" << endl << "5. Show Array" << endl << "6. Cancel a number of moves" << endl << "7. Replay the moves that were cancelled" << endl <<  "8. Exit" << endl;
 }
 
 void display() {
@@ -155,4 +160,24 @@ void reboot() {
 		arrayMap[i] = 0;
 	}
 	arrayMap[0] = 1;
+}
+
+void showArray() {
+	for (int i = 0; i < 21; i++) {
+		cout << "-";
+	}
+	cout << endl;
+	for (int i = 0; i < 10; i++) {
+		cout << "|";
+			cout << " ";
+	}
+	cout << "|" << endl;
+	for (int i = 0; i < 21; i++) {
+		cout << "-";
+	}
+	cout << endl;
+	for (int i = 0; i < 10; i++) {
+		cout << " " << i;
+	}
+	cout << endl << endl;
 }
