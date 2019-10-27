@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 void controllerMenu();
 void display();
@@ -7,7 +8,11 @@ int left(int);
 int right(int);
 void reboot();
 void showArray();
+void cancel(int);
 int arrayMap[10];
+int movesCount = 0;
+vector<int> movesHistory;
+vector<int> cancelledMoves;
 
 int main() {
 	bool programRunning = true;
@@ -37,6 +42,7 @@ int main() {
 			else {
 				cout << "Unable to move to the right, out of bounds. " << endl << endl;
 			}
+			movesCount++;
 			break;
 		case 2:
 			cout << endl << "How many tiles to the left would you like to move the robot? " << endl;
@@ -53,6 +59,7 @@ int main() {
 			else {
 				cout << "Unable to move to the left, out of bounds. " << endl << endl;
 			}
+			movesCount++;
 			break;
 		case 3:
 			cout << endl << "Displaying the array map" << endl;
@@ -67,8 +74,14 @@ int main() {
 			showArray();
 			break;
 		case 6:
+			cout << endl << "How many moves would you like to cancel? " << endl;
+			cin >> n;
+			cancel(n);
 			break;
 		case 7:
+			cout << endl << "How many of the last cancelled moves would you like to view? " << endl;
+			cin >> n;
+			cancel(n);
 			break;
 		case 8:
 			cout << "Program is ending.";
@@ -131,6 +144,7 @@ int right(int n) {
 			}
 		}
 	}
+	movesHistory.push_back(moves);
 	return moves;
 }
 
@@ -151,6 +165,7 @@ int left(int n) {
 			}
 		}
 	}
+	movesHistory.push_back(-moves);
 	return moves;
 }
 
@@ -180,4 +195,43 @@ void showArray() {
 		cout << " " << i;
 	}
 	cout << endl << endl;
+}
+
+void cancel(int n) {
+	int vectorSize = movesHistory.size();
+	if (n > vectorSize) {
+		n = vectorSize;
+		if (vectorSize > 0) {
+			cout << "Only " << vectorSize << " moves were performed. " << vectorSize << " moves will be cancelled instead." << endl << endl;
+		}
+		else {
+			cout << "No moves were performed. Thus none can be cancelled." << endl << endl;
+			return;
+		}
+	}
+	for (int i = 0; i < n; i++) {
+			int lastMove = movesHistory.back();
+			if (lastMove > 0) {
+				// Moved to the right
+				cout << "Cancel right" << endl;
+				cout << lastMove << endl;
+				left(lastMove);
+				cancelledMoves.push_back(lastMove);
+			}
+			else if (lastMove < 0) {
+				// Moved to the left
+				cout << "Cancel left" << endl;
+				cout << lastMove << endl;
+				lastMove *= -1;
+				right(lastMove);
+				cancelledMoves.push_back(-lastMove);
+			}
+			movesHistory.pop_back();
+	}
+}
+
+void showCancelled(int n) {
+	for (int i = 0; i < n; i++) {
+
+	}
 }
