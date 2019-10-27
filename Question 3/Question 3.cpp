@@ -3,8 +3,8 @@
 using namespace std;
 void controllerMenu();
 void display();
-void left(int);
-void right(int);
+int left(int);
+int right(int);
 void reboot();
 int arrayMap[10];
 
@@ -19,18 +19,29 @@ int main() {
 		cin >> command;
 		// n is a number variable used by the right/left functions
 		int n = 1;
+		int movement;
 		switch (command) {
 		case 1:
 			cout << endl << "How many tiles to the right would you like to move the robot? " << endl;
 			cin >> n;
-			cout << endl << "Robot was moved to the right by " << n << " tiles." << endl << endl;
-			right(n);
+			movement = right(n);
+			if (movement > 0) {
+				cout << endl << "Robot was moved to the right by " << movement << " tiles." << endl << endl;
+			}
+			else {
+				cout << "Unable to move to the right, out of bounds. " << endl << endl;
+			}
 			break;
 		case 2:
 			cout << endl << "How many tiles to the left would you like to move the robot? " << endl;
 			cin >> n;
-			cout << endl << "Robot was moved to the left by " << n << " tiles." << endl << endl;
-			left(n);			
+			movement = left(n);
+			if (movement > 0) {
+				cout << endl << "Robot was moved to the left by " << movement << " tiles." << endl << endl;
+			}
+			else {
+				cout << "Unable to move to the left, out of bounds. " << endl << endl;
+			}
 			break;
 		case 3:
 			cout << endl << "Displaying the array map" << endl;
@@ -47,7 +58,7 @@ int main() {
 			programRunning = false;
 			break;
 		default:
-			cout << "Command could not be recognized";
+			cout << "Command could not be recognized" << endl << endl;
 		}
 	}
 
@@ -84,39 +95,44 @@ void display() {
 	cout << endl << endl;
 }
 
-void right(int n) {
+int right(int n) {
+	int moves = 0;
 	for (int i = 0; i < n; i++) {
 		for (int i = 0; i < 10; i++) {
 			if (arrayMap[i] == 1) {
 				if (i != 9) {
+					moves = moves+1;
 					arrayMap[i] = 0;
 					arrayMap[i + 1] = 1;
 					break; // Stops the function from looping a move to the right
 				}
 				else {
-					cout << "Unable to move to the right, out of bounds. " << endl << endl;
+					break;
 				}
 			}
 		}
 	}
+	return moves;
 }
 
-void left(int n) {
+int left(int n) {
+	int moves = 0;
 	for (int i = 0; i < n; i++) {
 		for (int i = 0; i < 10; i++) {
 			if (arrayMap[i] == 1) {
 				if (i != 0) {
+					moves = moves+1;
 					arrayMap[i] = 0;
 					arrayMap[i - 1] = 1;
 					break; // Stops the function from looping after an action was taken
 				}
 				else {
-					cout << "Unable to move to the left, out of bounds. " << endl << endl;
+					break;
 				}
 			}
 		}
 	}
-
+	return moves;
 }
 
 void reboot() {
