@@ -72,9 +72,10 @@ void display() {
 void right() {
 	for (int i = 0; i < 10; i++) {
 		if (arrayMap[i] == 1) {
-			arrayMap[i] = 0;
-			if (i + 1 != 10) {
+			if (i != 9) {
+				arrayMap[i] = 0;
 				arrayMap[i + 1] = 1;
+				return; // Stops the function from looping a move to the right
 			}
 			else {
 				cout << "Unable to move to the right, out of bounds. " << endl;
@@ -86,9 +87,10 @@ void right() {
 void left() {
 	for (int i = 0; i < 10; i++) {
 		if (arrayMap[i] == 1) {
-			arrayMap[i] = 0;
 			if (i != 0) {
+				arrayMap[i] = 0;
 				arrayMap[i - 1] = 1;
+				return; // Stops the function from looping after an action was taken
 			}
 			else {
 				cout << "Unable to move to the left, out of bounds. " << endl;
