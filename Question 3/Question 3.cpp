@@ -26,7 +26,12 @@ int main() {
 			cin >> n;
 			movement = right(n);
 			if (movement > 0) {
-				cout << endl << "Robot was moved to the right by " << movement << " tiles." << endl << endl;
+				if (movement < n) {
+					cout << endl << n << " moves will result in a out of bounds. Instead, robot was moved to the right by " << movement << " tiles." << endl << endl;
+				}
+				else {
+					cout << endl << "Robot was moved to the right by " << movement << " tiles." << endl << endl;
+				}
 			}
 			else {
 				cout << "Unable to move to the right, out of bounds. " << endl << endl;
@@ -37,7 +42,12 @@ int main() {
 			cin >> n;
 			movement = left(n);
 			if (movement > 0) {
-				cout << endl << "Robot was moved to the left by " << movement << " tiles." << endl << endl;
+				if (movement < n) {
+					cout << endl << n << " moves will result in a out of bounds. Instead, robot was moved to the left by " << movement << " tiles." << endl << endl;
+				}
+				else {
+					cout << endl << "Robot was moved to the left by " << movement << " tiles." << endl << endl;
+				}
 			}
 			else {
 				cout << "Unable to move to the left, out of bounds. " << endl << endl;
@@ -91,6 +101,10 @@ void display() {
 	cout << "|" << endl;
 	for (int i = 0; i < 21; i++) {
 		cout << "-";
+	}
+	cout << endl;
+	for (int i = 0; i < 10; i++) {
+		cout << " " << i;
 	}
 	cout << endl << endl;
 }
