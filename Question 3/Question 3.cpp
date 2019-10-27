@@ -11,10 +11,12 @@ int main() {
 	bool programRunning = true;
 	arrayMap[0] = 1;
 	// Command Handling
+	// Loop allows the display menu to display each time a command has been issued
 	while (programRunning == true) {
 		int command;
 		controllerMenu();
 		cin >> command;
+		// n is a number variable used by the right/left functions
 		int n = 1;
 		switch (command) {
 		case 1:
@@ -56,6 +58,9 @@ void controllerMenu() {
 
 void display() {
 	// Empty is 0, Robot 1 is 1, Robot 2 is 2.
+	// 21x "-" on the top and bottom as the horizontal lines
+	// 10x "| " as the vertical lines + one "|" as the last vertical line
+	// "^" replaces the space if it is the current location of the robot
 	for (int i = 0; i < 21; i++) {
 		cout << "-";
 	}
